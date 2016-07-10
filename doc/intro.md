@@ -1,3 +1,3 @@
-# Introduction to shortener
+# Introduction to Shortener
 
-TODO: write [great documentation](http://jacobian.org/writing/what-to-write/)
+It's an web server application which generates short urls.

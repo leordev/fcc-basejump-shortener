@@ -1,36 +1,20 @@
-# shortener
+# Shortener
 
-FIXME: description
+FreeCodeCamp API Exercise: URL Shortener
+
+Run https://fcc-shortener.herokuapp.com/new/[YOUR_URL_HERE] to create short an address, you will receive the id.
+And then you can distribute your shorten id here: https://fcc-shortener.herokuapp.com/[ID]
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Just run the below command to compile the project:
+ 
+    $ lein uberjar
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar shortener-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2016 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+You can run the server locally using the below command:
+    
+    $ java -cp target/shortener.jar clojure.main -m shortener.core
+    
+The default port is 8080, if you want to use other port just set the env. variable PORT.
