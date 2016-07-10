@@ -11,15 +11,35 @@
   (:gen-class))
 
 ;; Environment Variables
-(def port                                                   ; Server PORT
+(defn get-env-port
+  "detect PORT environment variable"
+  []
   (if-let [port (env :port)]
-    (Integer. port)
-    8080))
+    (do (prn "Environment variable PORT detected: " port)
+        (Integer. port))
+    (do (prn "No-Environment variable PORT, setting default port as 8080")
+        8080)))
+(def port (get-env-port))
 
-(def db-url                                                 ; DB Url
-  (or (env :database-url) "jdbc:mysql://localhost:3306/fcc_shortener?user=root"))
+(defn get-env-db-url
+  "detect DATABASE_URL environment variable"
+  []
+  (if-let [url (env :database-url)]
+    (do (prn "Environment variable DATABASE_URL detected: " url)
+        url)
+    (do (prn (str "No-Environment variable DATABASE_URL, setting default url as "
+                  "'jdbc:mysql://localhost:3306/fcc_shortener?user=root'"))
+        "jdbc:mysql://localhost:3306/fcc_shortener?user=root")))
+(def db-url (get-env-db-url))
 
-(defn in-prod? [] (or (env :production) false))                   ; Production Environment
+(defn in-prod?
+  "verifies if it's in production mode (environment variable PRODUCTION)"
+  []
+  (if-let [production (env :production)]
+    (do (prn "Production Mode ON, environment variable PRODUCTION=" production)
+        true)
+    (do (prn "No-Environment variable PRODUCTION, production mode false")
+        false)))
 
 (defn bad-request
   "return status 400"
@@ -89,5 +109,3 @@
                   (site all-routes))]
     (run-server handler {:port port})
     (println "Running server on port " port)))
-  ;(reset! server (run-server #'all-routes {:port port}))
-  ;(println "Running server on port " port))
