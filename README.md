@@ -18,3 +18,5 @@ You can run the server locally using the below command:
     $ java -cp target/shortener.jar clojure.main -m shortener.core
     
 The default port is 8080, if you want to use other port just set the env. variable PORT.
+
+You need also to provide a MYSQL JDBC address in the env. variable `DATABASE_URL` for example `jdbc:mysql://localhost:3306/fcc_shortener?user=root`
