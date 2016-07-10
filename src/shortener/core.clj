@@ -24,7 +24,7 @@
 (defn get-env-db-url
   "detect DATABASE_URL environment variable"
   []
-  (if-let [url (env :database-url)]
+  (if-let [url (or (env :database-url) (env :cleardb-database-url)) ]
     (do (prn "Environment variable DATABASE_URL detected: " url)
         url)
     (do (prn (str "No-Environment variable DATABASE_URL, setting default url as "
